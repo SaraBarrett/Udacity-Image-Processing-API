@@ -5,7 +5,7 @@ import resizeImage from './api/resizeImage';
 const routes = express.Router();
 
 routes.get('/', (req : Request,  res : Response) => { 
-    res.send('Main Route');
+    return res.send('Main Route');
 });
 
 
