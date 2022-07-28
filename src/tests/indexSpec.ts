@@ -1,30 +1,30 @@
-import supertest from 'supertest';
-//import imageLoading from '../routes/api/imageLoading';  
-//import resize from '../routes/api/personalModules/resize';    
+import supertest from 'supertest'; 
 import app from '../index';
+import resize from '../routes/api/personalModules/resize';
 
 const request = supertest(app);
 
-describe('Test endpoint responses', () => {
-    it('gets the api endpoint that loads an image', async (done) => {
-        const response = await request.get('/loading');
-        expect(response.status).toBe(200);
-        done();
-    }
-)});
 
-/*it('expects to resize an image and save it', () => {
-    request(app)
-    .post("/update")
-    .type("form")
-    .send({ item: "hey" })
-    .then(() => {
-      request(app)
-        .get("/test")
-        .expect({ array: ["hey"] }, done);
-    });
+describe('Endpoint responses', () => {
+  it('Main endpoint expects to return 200', async () => {
+    const response = await request.get('/');
+    expect(response.status)
+    .toBe(200);
+  })
+  it('gets the api endpoint with the query parameter', async () => {
+    const response = await request.get('/loading');
+    expect(response.status)
+    .toBe(200);
+  })
 });
 
-it('expects to resize an image and save it', () => {
-  expect(myFunc(5)).toEqual(25);
-});*/
+
+describe('Test functionality - Resize an image and name it with right path', () => {
+  const path = './public/images/resizedsantamonica500X600.jpg';
+
+  it('should exist an image with the new name', async () => {
+    await resize('500', '600', 'santamonica');
+    expect(path).toBeDefined();
+  })
+});
+ 

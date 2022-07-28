@@ -1,10 +1,10 @@
-import express from 'express';   
+import express, { Request, Response } from 'express';   
 import imageLoading from './api/imageLoading';  
 import resizeImage from './api/resizeImage';    
 
 const routes = express.Router();
 
-routes.get('/', (req, res) => { 
+routes.get('/', (req : Request,  res : Response) => { 
     res.send('Main Route');
 });
 
